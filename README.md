@@ -666,10 +666,6 @@ Contributions welcome! Please:
 3. Make your changes
 4. Submit a pull request
 
-## 📄 License
-
-[Your License Here]
-
 ## 🙏 Acknowledgments
 
 Built with open-source tools:
