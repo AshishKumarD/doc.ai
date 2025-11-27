@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  jiradocai:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: jiradocai-assistant
+    environment:
+      - OLLAMA_HOST=http://host.docker.internal:11434
+      - CHROMA_DB_PATH=/app/data/chroma_db
+    volumes:
+      # Mount your Jira documentation (read-only)
+      - ../data/documentation:/app/data/documentation:ro
+      # Persist ChromaDB database
+      - ../data/chroma_db:/app/data/chroma_db
+      # Mount source code for development
+      - ../src:/app/src
+      - ../scripts:/app/scripts
+      - ../config:/app/config
+    ports:
+      # Expose Gradio web interface
+      - "7860:7860"
+    stdin_open: true
+    tty: true
+    command: tail -f /dev/null  # Keep container running
+
+  # Optional: Web UI service (runs separately)
+  jiradocai-web:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: jiradocai-web
+    environment:
+      - OLLAMA_HOST=http://host.docker.internal:11434
+      - CHROMA_DB_PATH=/app/data/chroma_db
+      - GRADIO_SERVER_NAME=0.0.0.0
+      - GRADIO_SERVER_PORT=7860
+    volumes:
+      - ../data/documentation:/app/data/documentation:ro
+      - ../data/chroma_db:/app/data/chroma_db
+      - ../src:/app/src
+      - ../scripts:/app/scripts
+      - ../config:/app/config
+    ports:
+      - "7860:7860"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  # Allow container to access host's Ollama
+    command: python src/web/3_query_web.py
+    profiles:
+      - web  # Only start with: docker-compose --profile web up

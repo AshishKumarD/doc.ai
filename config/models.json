@@ -1,0 +1,45 @@
+{
+  "models": [
+    {
+      "id": 1,
+      "name": "Qwen2.5 0.5B (Low RAM)",
+      "model_name": "qwen2.5:0.5b",
+      "ram_requirement": "~1GB",
+      "parameters": "0.5B",
+      "description": "Lightweight model for systems with limited RAM. Good for basic queries.",
+      "recommended_for": "Low-end systems, quick responses"
+    },
+    {
+      "id": 2,
+      "name": "Llama 3.2 3B (Medium RAM)",
+      "model_name": "llama3.2:3b",
+      "ram_requirement": "~4GB",
+      "parameters": "3B",
+      "description": "Balanced model offering good performance with moderate RAM usage.",
+      "recommended_for": "Mid-range systems, good balance of speed and quality"
+    },
+    {
+      "id": 3,
+      "name": "Llama 3.1 8B (High RAM)",
+      "model_name": "llama3.1:8b",
+      "ram_requirement": "~8GB",
+      "parameters": "8B",
+      "description": "High-quality responses with detailed explanations. Recommended for most use cases.",
+      "recommended_for": "Systems with 16GB+ RAM, detailed documentation queries"
+    },
+    {
+      "id": 4,
+      "name": "Qwen2.5 14B (Very High RAM)",
+      "model_name": "qwen2.5:14b-instruct",
+      "ram_requirement": "~14GB",
+      "parameters": "14B",
+      "description": "Best quality responses with superior instruction following. For production environments.",
+      "recommended_for": "High-end systems with 32GB+ RAM, professional support responses"
+    }
+  ],
+  "embedding_model": {
+    "name": "BAAI/bge-small-en-v1.5",
+    "description": "Fast and efficient embedding model for document retrieval",
+    "ram_requirement": "~500MB"
+  }
+}
