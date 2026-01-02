@@ -77,7 +77,7 @@ query_engine = index.as_query_engine(
 )
 
 # Test query
-question = "How do I authenticate to Xray via REST API?"
+question = """When a team-managed Jira project containing Xray Test issues is archived and then unarchived, is the Xray configuration preserved? Are there any known limitations with Xray and archived/unarchived team-managed projects? Can test data be accessed after unarchiving?"""
 print(f"\n📝 Question: {question}\n")
 print("="*70)
 print("Querying...")

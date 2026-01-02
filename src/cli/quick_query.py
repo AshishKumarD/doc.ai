@@ -15,7 +15,7 @@ import chromadb
 from llama_index.core.prompts import PromptTemplate
 
 # Configuration
-CHROMA_DB_PATH = "./chroma_db"
+CHROMA_DB_PATH = "./data/chroma_db/chroma_xray_cloud_db"
 OLLAMA_MODEL = "qwen2.5:14b-instruct"
 OLLAMA_HOST = "http://localhost:11434"
 
@@ -37,7 +37,7 @@ def setup():
 
     # Load index
     chroma_client = chromadb.PersistentClient(path=CHROMA_DB_PATH)
-    chroma_collection = chroma_client.get_or_create_collection("docs")
+    chroma_collection = chroma_client.get_or_create_collection("xray_cloud")
     vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
 
     index = VectorStoreIndex.from_vector_store(
