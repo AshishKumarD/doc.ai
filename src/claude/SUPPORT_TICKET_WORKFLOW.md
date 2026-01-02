@@ -18,11 +18,14 @@ This workflow is used by Xray support team members to respond to customer suppor
 
 **The Flow:**
 1. Customer submits support ticket → You (Support Member)
-2. You (via Claude) run `query_direct.py` script
-3. Script queries ChromaDB (vector search only, no LLM)
-4. Script returns raw documentation to you
-5. You read the docs and synthesize the answer
-6. You provide official response to Customer
+2. You formulate search queries
+3. **You (via Claude) run `backlog_search.py` to check for similar tickets**
+4. **Analyze backlog results for official answers and patterns**
+5. You (via Claude) run `query_direct.py` script
+6. Script queries ChromaDB (vector search only, no LLM)
+7. Script returns raw documentation to you
+8. You read the docs and synthesize the answer (combining backlog + docs)
+9. You provide official response to Customer
 
 **Key Point:** There is NO local LLM model running. Claude (you) is the only AI doing the synthesis, acting as a support team member.
 
@@ -178,7 +181,7 @@ cd /Users/ashish/Jira/docai
 - Top K: 10 (retrieves 10 most relevant documents)
 - Output: Raw documentation snippets with metadata
 
-### Step 4: Run Multiple Queries
+### Step 5: Run Multiple Queries (ChromaDB)
 For comprehensive answers, run multiple targeted queries:
 
 ```bash
@@ -192,7 +195,7 @@ For comprehensive answers, run multiple targeted queries:
 ./venv/bin/python src/claude/query_direct.py "GraphQL bulk operations mutations aliases in Xray"
 ```
 
-### Step 5: Analyze the Results
+### Step 6: Analyze the Results (ChromaDB)
 
 Each query returns raw documentation:
 
@@ -209,7 +212,7 @@ Now YOU read the raw documentation and:
 3. Look for specific examples, code snippets, or instructions
 4. Check relevance scores - lower scores may be less reliable
 
-### Step 6: [OPTIONAL] Perform Web Search for Additional Confirmation
+### Step 7: [OPTIONAL] Perform Web Search for Additional Confirmation
 
 **When to use this step:**
 - If the documentation does NOT provide a 100% clear answer
@@ -245,9 +248,20 @@ WebSearch: "Xray app license expired can still view test data Jira Cloud"
 - Cite both sources separately in your final response
 - If web search contradicts documentation, note the discrepancy and prioritize official docs
 
-### Step 7: Synthesize the Response (Claude Does This)
+### Step 8: Synthesize the Response (Claude Does This)
 
 **CRITICAL RULES:**
+
+**IMPORTANT:** When synthesizing responses, consider ALL sources in this order:
+1. **Jira Backlog Search Results** (Step 3) - Official answers from resolved tickets
+2. **ChromaDB Documentation** (Steps 4-6) - Official Xray documentation
+3. **Web Search Results** (Step 7 - if performed) - Community insights and additional context
+
+**Integration Strategy:**
+- If backlog search found resolved tickets with official answers, prioritize those
+- Use documentation to provide detailed explanations and references
+- Use web search to supplement or validate findings
+- Clearly separate and label each source in your response
 
 **IMPORTANT:** It is OKAY and ENCOURAGED to suggest theoretical solutions based on industry standards, specifications, or general knowledge. However, you MUST clearly distinguish them from documented facts.
 
@@ -268,7 +282,7 @@ WebSearch: "Xray app license expired can still view test data Jira Cloud"
 3. **Never claim something is documented when it's only theoretically possible**
 4. **Never omit disclaimers when suggesting theoretical solutions** (always include "requires testing" or similar)
 
-### Step 7.1: Extract Accurate Documentation URLs
+### Step 8.1: Extract Accurate Documentation URLs
 
 **CRITICAL: Always provide exact documentation URLs, not generic home page links.**
 
@@ -314,7 +328,7 @@ head -5 data/documentation/xray_cloud/44565208.md
 
 Generic home page links are not helpful and make your response less professional.
 
-### Step 8: Format the Response
+### Step 9: Format the Response
 
 **Template:**
 
@@ -324,6 +338,25 @@ Hi [Customer Name],
 Thank you for contacting Xray Support. I'll be happy to help with your question.
 
 ## Answer for [TICKET-ID]
+
+---
+
+### Similar Tickets in Backlog (If Found)
+
+**Note:** [Number] similar tickets found in our backlog.
+
+**Most Relevant Tickets:**
+- **[SUPPORT-XXXXX]** - "[Ticket Title]" (Status: Resolved | Date: YYYY-MM-DD)
+  - 🔗 [View Ticket](URL)
+  - [One sentence explaining relevance and resolution]
+
+- **[SUPPORT-XXXXX]** - "[Another Ticket]" (Status: Resolved | Date: YYYY-MM-DD)
+  - 🔗 [View Ticket](URL)
+  - [One sentence explaining relevance and resolution]
+
+**Pattern Analysis:** [Brief analysis - e.g., "Multiple customers have reported this", "This is a known limitation", etc.]
+
+---
 
 ### Question 1: [First question]
 
@@ -563,7 +596,11 @@ The ChromaDB contains documentation from:
 
 Before sending a response, verify:
 
-- [ ] Ran `query_direct.py` with multiple targeted queries
+- [ ] **STEP 3: Backlog Search** - Ran `backlog_search.py` with relevant keywords
+- [ ] Analyzed backlog search results for resolved tickets with official answers
+- [ ] Identified any patterns (multiple customers, known limitations, feature requests)
+- [ ] Included relevant backlog tickets in response (if found)
+- [ ] **STEP 4-6: Documentation Search** - Ran `query_direct.py` with multiple targeted queries
 - [ ] Read the raw documentation returned by the script
 - [ ] Cited source files and relevance scores from the output
 - [ ] **CRITICAL:** Extracted exact documentation URLs from source files (using `head -5 data/documentation/xray_cloud/[FILENAME].md`)
