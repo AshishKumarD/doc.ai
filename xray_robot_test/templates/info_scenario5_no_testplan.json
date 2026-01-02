@@ -1,0 +1,13 @@
+{
+  "_comment": "Scenario 5: No testPlanKey - to verify if basic import works without Test Plan association",
+  "fields": {
+    "project": {
+      "key": "XSP"
+    },
+    "summary": "Smoke test results - Scenario 5 (No Test Plan)",
+    "description": "Testing without testPlanKey to verify basic import works",
+    "issuetype": {
+      "name": "Test Execution"
+    }
+  }
+}

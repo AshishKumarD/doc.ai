@@ -1,0 +1,17 @@
+{
+  "_comment": "Scenario 4: Using project ID instead of key (from documentation example)",
+  "fields": {
+    "project": {
+      "id": "PLACEHOLDER_PROJECT_ID"
+    },
+    "summary": "Smoke test results - Scenario 4 (Project ID)",
+    "description": "Testing with project ID instead of key",
+    "issuetype": {
+      "name": "Test Execution"
+    }
+  },
+  "xrayFields": {
+    "testPlanKey": "XSP-100",
+    "environments": ["Chrome", "Linux"]
+  }
+}

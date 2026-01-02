@@ -1,0 +1,16 @@
+{
+  "_comment": "Scenario 3: Using issue type NAME instead of ID (RECOMMENDED)",
+  "fields": {
+    "project": {
+      "key": "XSP"
+    },
+    "summary": "Smoke test results - Scenario 3 (Issue Type Name)",
+    "description": "Testing with issue type NAME instead of ID",
+    "issuetype": {
+      "name": "Test Execution"
+    }
+  },
+  "xrayFields": {
+    "testPlanKey": "XSP-100"
+  }
+}

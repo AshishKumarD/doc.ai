@@ -1,0 +1,14 @@
+{
+  "_comment": "Scenario 1: User's first attempt - testPlanKey as ARRAY (WRONG)",
+  "fields": {
+    "project": {
+      "key": "XSP"
+    },
+    "summary": "Smoke test results - Scenario 1 (Array)",
+    "description": "Testing with testPlanKey as array - this should FAIL",
+    "testPlanKey": ["XSP-100"],
+    "issuetype": {
+      "id": "10858"
+    }
+  }
+}

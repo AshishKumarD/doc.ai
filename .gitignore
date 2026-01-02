@@ -68,6 +68,11 @@ config/settings.env
 *.bak
 *.cache
 
+# JIRA ticket downloads (temporary)
+SUPPORT-*_*.json
+SUPPORT-*_*.html
+jira_ticket_*.html
+
 # Documentation (add your docs to git if you want to version them)
 # Comment out if you want to track documentation
 # data/documentation/

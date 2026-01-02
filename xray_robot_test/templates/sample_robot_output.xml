@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20251229 14:00:00.000" generator="Robot 3.0.2 (Python 3.9 on darwin)">
+    <suite source="smoke_tests" id="s1" name="Smoke Tests">
+        <test id="s1-t1" name="Login Test">
+            <kw name="Open Browser" library="SeleniumLibrary">
+                <arg>https://example.com/login</arg>
+                <arg>chrome</arg>
+                <doc>Opens a new browser instance to the given URL.</doc>
+                <status status="PASS" starttime="20251229 14:00:01.000" endtime="20251229 14:00:03.000"/>
+            </kw>
+            <kw name="Input Text" library="SeleniumLibrary">
+                <arg>id=username</arg>
+                <arg>testuser</arg>
+                <doc>Types the given text into the text field.</doc>
+                <status status="PASS" starttime="20251229 14:00:03.100" endtime="20251229 14:00:03.500"/>
+            </kw>
+            <kw name="Input Text" library="SeleniumLibrary">
+                <arg>id=password</arg>
+                <arg>password123</arg>
+                <doc>Types the given text into the text field.</doc>
+                <status status="PASS" starttime="20251229 14:00:03.600" endtime="20251229 14:00:03.900"/>
+            </kw>
+            <kw name="Click Button" library="SeleniumLibrary">
+                <arg>id=login-button</arg>
+                <doc>Clicks the button identified by locator.</doc>
+                <status status="PASS" starttime="20251229 14:00:04.000" endtime="20251229 14:00:05.000"/>
+            </kw>
+            <kw name="Page Should Contain" library="SeleniumLibrary">
+                <arg>Welcome</arg>
+                <doc>Verifies that the current page contains text.</doc>
+                <status status="PASS" starttime="20251229 14:00:05.100" endtime="20251229 14:00:05.300"/>
+            </kw>
+            <status status="PASS" starttime="20251229 14:00:01.000" endtime="20251229 14:00:05.300"/>
+        </test>
+
+        <test id="s1-t2" name="Navigation Test">
+            <kw name="Click Link" library="SeleniumLibrary">
+                <arg>Dashboard</arg>
+                <doc>Clicks a link identified by locator.</doc>
+                <status status="PASS" starttime="20251229 14:00:06.000" endtime="20251229 14:00:07.000"/>
+            </kw>
+            <kw name="Page Should Contain" library="SeleniumLibrary">
+                <arg>Dashboard</arg>
+                <doc>Verifies that the current page contains text.</doc>
+                <status status="PASS" starttime="20251229 14:00:07.100" endtime="20251229 14:00:07.300"/>
+            </kw>
+            <status status="PASS" starttime="20251229 14:00:06.000" endtime="20251229 14:00:07.300"/>
+        </test>
+
+        <test id="s1-t3" name="Logout Test">
+            <kw name="Click Button" library="SeleniumLibrary">
+                <arg>id=logout-button</arg>
+                <doc>Clicks the button identified by locator.</doc>
+                <status status="PASS" starttime="20251229 14:00:08.000" endtime="20251229 14:00:09.000"/>
+            </kw>
+            <kw name="Page Should Contain" library="SeleniumLibrary">
+                <arg>Login</arg>
+                <doc>Verifies that the current page contains text.</doc>
+                <status status="PASS" starttime="20251229 14:00:09.100" endtime="20251229 14:00:09.300"/>
+            </kw>
+            <status status="PASS" starttime="20251229 14:00:08.000" endtime="20251229 14:00:09.300"/>
+        </test>
+
+        <status status="PASS" starttime="20251229 14:00:00.000" endtime="20251229 14:00:09.500"/>
+    </suite>
+    <statistics>
+        <total>
+            <stat pass="3" fail="0">All Tests</stat>
+        </total>
+        <tag>
+        </tag>
+        <suite>
+            <stat pass="3" fail="0" id="s1" name="Smoke Tests">Smoke Tests</stat>
+        </suite>
+    </statistics>
+</robot>

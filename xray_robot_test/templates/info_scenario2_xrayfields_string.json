@@ -1,0 +1,16 @@
+{
+  "_comment": "Scenario 2: User's second attempt - xrayFields with string testPlanKey (CORRECT FORMAT)",
+  "fields": {
+    "project": {
+      "key": "XSP"
+    },
+    "summary": "Smoke test results - Scenario 2 (xrayFields)",
+    "description": "Testing with xrayFields and testPlanKey as string - this SHOULD work",
+    "issuetype": {
+      "id": "10858"
+    }
+  },
+  "xrayFields": {
+    "testPlanKey": "XSP-100"
+  }
+}

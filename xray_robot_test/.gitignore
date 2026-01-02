@@ -1,0 +1,20 @@
+# Test binary files
+test_file_*.bin
+*.bin
+
+# Authentication tokens (sensitive)
+results/auth_token.json
+
+# Test results (generated)
+results/attachment_test_results.json
+results/import_test_results.json
+
+# Other generated files
+results/create_meta.json
+results/project_info.json
+results/user_details.json
+
+# Screenshots
+*.png
+*.jpg
+*.jpeg

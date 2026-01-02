@@ -1,0 +1,18 @@
+{
+    "xray_cloud": {
+        "client_id": "75883B87B0EE425DAD7152FFA3038D30",
+        "client_secret": "2150d771d4106ee058d93ca98da6a5fd742c2fcd079218f81ab8d858a8f3d15d",
+        "auth_url": "https://xray.cloud.getxray.app/api/v2/authenticate",
+        "base_url": "https://xray.cloud.getxray.app/api/v2"
+    },
+    "jira_api": {
+        "email": "YOUR_JIRA_EMAIL",
+        "api_token": "YOUR_JIRA_API_TOKEN"
+    },
+    "test_config": {
+        "project_key": "XSP",
+        "test_plan_key": "XSP-100",
+        "test_execution_issue_type_id": "10858"
+    },
+    "jira_url": "https://ashishkumard1098.atlassian.net"
+}
